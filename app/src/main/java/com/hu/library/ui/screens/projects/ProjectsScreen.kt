@@ -1,63 +1,55 @@
 package com.hu.library.ui.screens.projects
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.hu.library.data.model.Project
+import com.hu.library.ui.theme.PrimaryColor
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProjectsScreen() {
 
-    // ===== Dummy Data (مؤقتاً) ===== //
+    // فلاتر
+    val filters = listOf("الكل", "هندسة البرمجيات", "علوم الحاسوب", "نظم المعلومات", "رسائل ماجستير")
+    var selectedFilter by remember { mutableStateOf("الكل") }
+
+    // بيانات وهمية
     val projectsList = listOf(
-        Project(
-            id = 1,
-            title = "Smart Library System",
-            abstract = "This project aims to build a smart library...",
-            description = "",
-            supervisor = "د. محمد الرواشدة",
-            students = listOf("زياد القفشة", "إياد الحباشنة"),
-            department = "هندسة البرمجيات",
-            year = 2024
-        ),
-        Project(
-            id = 2,
-            title = "AI-Based Book Recommender",
-            abstract = "AI system that recommends books...",
-            description = "",
-            supervisor = "د. عمر الهزايمة",
-            students = listOf("ماجد ربابعة"),
-            department = "علوم الحاسوب",
-            year = 2023
-        )
+        Project(1, "نظام المكتبة الذكي", "ملخص...", "", "د. محمد", listOf("زياد"), "هندسة البرمجيات", 2024),
+        Project(2, "AI Image Gen", "ملخص...", "", "د. علي", listOf("أحمد"), "علوم الحاسوب", 2023)
     )
 
-    // ===== UI ===== //
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
+    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
 
-        Text(
-            text = "مشاريع التخرج",
-            style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Bold)
-        )
+        Text("أرشيف المشاريع والرسائل", style = MaterialTheme.typography.headlineMedium, color = PrimaryColor)
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // شريط الفلترة
+        LazyRow {
+            items(filters) { filter ->
+                FilterChip(
+                    selected = selectedFilter == filter,
+                    onClick = { selectedFilter = filter },
+                    label = { Text(filter) },
+                    modifier = Modifier.padding(end = 8.dp)
+                )
+            }
+        }
 
         Spacer(modifier = Modifier.height(16.dp))
 
         LazyColumn {
             items(projectsList) { project ->
-                ProjectCard(project)
+                ProjectCardModern(project)
                 Spacer(modifier = Modifier.height(12.dp))
             }
         }
@@ -65,55 +57,25 @@ fun ProjectsScreen() {
 }
 
 @Composable
-fun ProjectCard(project: Project) {
+fun ProjectCardModern(project: Project) {
     Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable {
-                // TODO: Navigate to Project Details Screen
-            },
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 3.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.White)
     ) {
-
         Column(modifier = Modifier.padding(16.dp)) {
+            Text(project.title, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+            Spacer(modifier = Modifier.height(4.dp))
+            Text("👨‍🎓 ${project.students.joinToString("، ")}", style = MaterialTheme.typography.bodyMedium)
+            Text("👨‍🏫 المشرف: ${project.supervisor}", style = MaterialTheme.typography.bodySmall, color = Color.Gray)
 
-            Text(
-                text = project.title,
-                style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)
-            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxWidth()) {
+                SuggestionChip(onClick = {}, label = { Text(project.department) })
+                SuggestionChip(onClick = {}, label = { Text("${project.year}") })
+            }
 
-            Spacer(modifier = Modifier.height(6.dp))
-
-            Text(
-                text = "المشرف: ${project.supervisor}",
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.primary
-            )
-
-            Text(
-                text = "الطلاب: ${project.students.joinToString(", ")}",
-                style = MaterialTheme.typography.bodySmall
-            )
-
-            Text(
-                text = "القسم: ${project.department}",
-                style = MaterialTheme.typography.bodySmall
-            )
-
-            Text(
-                text = "السنة: ${project.year}",
-                style = MaterialTheme.typography.bodySmall
-            )
-
-            Spacer(modifier = Modifier.height(12.dp))
-
-            Button(
-                onClick = {
-                    // TODO: Navigate to details
-                },
-                modifier = Modifier.align(Alignment.End)
-            ) {
-                Text("عرض التفاصيل")
+            Button(onClick = {}, modifier = Modifier.fillMaxWidth().padding(top = 8.dp)) {
+                Text("عرض التفاصيل والملفات")
             }
         }
     }

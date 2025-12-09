@@ -9,13 +9,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.hu.library.navigation.AppNavGraph
-import com.hu.library.ui.components.BottomNavigationBar
 import com.hu.library.ui.theme.HULibraryTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContent {
             HULibraryApp()
         }
@@ -24,17 +22,11 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun HULibraryApp() {
-
     HULibraryTheme {
-
         val navController = rememberNavController()
 
-        Scaffold(
-            bottomBar = {
-                BottomNavigationBar(navController = navController)
-            }
-        ) { innerPadding ->
-
+        // ✅ تم إزالة BottomNavigationBar من هنا
+        Scaffold { innerPadding ->
             AppNavGraph(
                 navController = navController,
                 modifier = Modifier.padding(innerPadding)

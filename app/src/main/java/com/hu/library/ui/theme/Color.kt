@@ -2,15 +2,17 @@ package com.hu.library.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val PrimaryColor = Color(0xFF00695C)      // أخضر غامق
-val SecondaryColor = Color(0xFF26A69A)    // أخضر تركوازي
-val BackgroundColor = Color(0xFFF7F9FA)   // خلفية فاتحة
-val SurfaceColor = Color.White
+// Modern Academic Palette
+val PrimaryColor = Color(0xFF0F172A)       // كحلي داكن (رسمي وعصري)
+val SecondaryColor = Color(0xFFF59E0B)     // برتقالي ذهبي (للأزرار والتفاعل)
+val BackgroundColor = Color(0xFFF8FAFC)    // رمادي فاتح جداً للخلفيات
+val SurfaceColor = Color(0xFFFFFFFF)       // أبيض للكروت
 
-val TextPrimary = Color(0xFF1B1B1B)
-val TextSecondary = Color(0xFF4F4F4F)
+val TextPrimary = Color(0xFF1E293B)        // أسود فحمي
+val TextSecondary = Color(0xFF64748B)      // رمادي للنصوص الفرعية
 
-// ألوان إضافية
-val SuccessGreen = Color(0xFF2E7D32)
-val WarningYellow = Color(0xFFF9A825)
-val ErrorRed = Color(0xFFD32F2F)
+// ألوان الحالة
+val SuccessGreen = Color(0xFF10B981)
+val WarningYellow = Color(0xFFFBBF24)
+val ErrorRed = Color(0xFFEF4444)
+val BlueAccent = Color(0xFF3B82F6)         // أزرق للتفاصيل
