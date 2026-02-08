@@ -5,44 +5,59 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.text.style.TextAlign
 
-// يفضل إضافة خط عربي مثل Tajawal أو Cairo لاحقاً، حالياً سننسق الأحجام
-val AppTypography = Typography(
+val Typography = Typography(
     headlineLarge = TextStyle(
-        fontSize = 30.sp,
-        fontWeight = FontWeight.Bold,
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.ExtraBold,
+        fontSize = 32.sp,
+        lineHeight = 40.sp,
         color = TextPrimary
     ),
     headlineMedium = TextStyle(
-        fontSize = 24.sp,
+        fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Bold,
+        fontSize = 24.sp,
+        lineHeight = 32.sp,
         color = TextPrimary
     ),
     titleLarge = TextStyle(
-        fontSize = 20.sp,
+        fontFamily = FontFamily.Default,
         fontWeight = FontWeight.SemiBold,
+        fontSize = 20.sp,
+        lineHeight = 28.sp,
         color = TextPrimary
     ),
     titleMedium = TextStyle(
-        fontSize = 18.sp,
+        fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Medium,
+        fontSize = 16.sp,
+        lineHeight = 24.sp,
+        letterSpacing = 0.15.sp,
         color = TextPrimary
     ),
     bodyLarge = TextStyle(
-        fontSize = 16.sp,
+        fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
-        color = TextSecondary,
-        lineHeight = 24.sp
+        fontSize = 16.sp,
+        lineHeight = 24.sp,
+        letterSpacing = 0.5.sp,
+        color = TextSecondary
     ),
     bodyMedium = TextStyle(
-        fontSize = 14.sp,
+        fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
+        fontSize = 14.sp,
+        lineHeight = 20.sp,
+        letterSpacing = 0.25.sp,
         color = TextSecondary
     ),
     labelSmall = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.Bold,
         fontSize = 11.sp,
-        fontWeight = FontWeight.Medium,
+        lineHeight = 16.sp,
+        letterSpacing = 0.5.sp,
         color = TextSecondary
     )
 )

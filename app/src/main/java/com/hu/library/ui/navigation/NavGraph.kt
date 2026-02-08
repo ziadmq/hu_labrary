@@ -27,7 +27,7 @@ fun AppNavGraph(
         composable("home") { HomeScreen(navController) }
         composable("map") { LibraryMapScreen() }
         composable("requests") { RequestsScreen() }
-        composable("staff") { StaffScreen() }
+        composable("staff") { StaffScreen(navController) }
         composable("projects") { ProjectsScreen() }
 
         // المسارات الجديدة

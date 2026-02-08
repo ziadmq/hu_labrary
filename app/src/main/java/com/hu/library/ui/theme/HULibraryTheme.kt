@@ -1,11 +1,19 @@
 package com.hu.library.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+
+val ModernShapes = Shapes(
+    small = RoundedCornerShape(8.dp),
+    medium = RoundedCornerShape(16.dp),
+    large = RoundedCornerShape(24.dp)
+)
 
 private val LightColorScheme = lightColorScheme(
     primary = PrimaryColor,
@@ -13,20 +21,10 @@ private val LightColorScheme = lightColorScheme(
     background = BackgroundColor,
     surface = SurfaceColor,
     onPrimary = Color.White,
-    onSecondary = Color.White,
+    onSecondary = TextPrimary, // Black text on Gold looks better
     onBackground = TextPrimary,
-    onSurface = TextPrimary
-)
-
-private val DarkColorScheme = darkColorScheme(
-    primary = PrimaryColor,
-    secondary = SecondaryColor,
-    background = Color(0xFF121212),
-    surface = Color(0xFF1E1E1E),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onBackground = Color.White,
-    onSurface = Color.White
+    onSurface = TextPrimary,
+    error = ErrorRed
 )
 
 @Composable
@@ -34,21 +32,20 @@ fun HULibraryTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-
-    val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme
-
+    val colorScheme = LightColorScheme
 
     val systemUi = rememberSystemUiController()
     SideEffect {
         systemUi.setSystemBarsColor(
-            color = colorScheme.primary
+            color = PrimaryColor, // Red Status Bar
+            darkIcons = false
         )
     }
 
     MaterialTheme(
         colorScheme = colorScheme,
         typography = AppTypography,
-        shapes = Shapes(),
+        shapes = ModernShapes,
         content = content
     )
 }
